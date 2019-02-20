@@ -5,11 +5,16 @@ namespace AutoApp.Persistence
 {
     public class AutoDbContext : DbContext
     {
+        public DbSet<Make> Makes { get; set; }
+        public DbSet<Feature> Features { get; set; }
+
         public AutoDbContext(DbContextOptions<AutoDbContext> options) : base(options)
         {            
         }
 
-        public DbSet<Make> Makes { get; set; }
-        public DbSet<Feature> Features { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<VehicleFeature>().HasKey(vf => new { vf.FeatureId, vf.VehicleId });
+        }
     }
 }
