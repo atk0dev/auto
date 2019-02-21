@@ -44,5 +44,23 @@ namespace AutoApp.Controllers
             var result = mapper.Map<Vehicle, VehicleResource>(vehicle);
             return Ok(result);
         }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateVehicle(int id, [FromBody]VehicleResource vehicleResource)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var model = await context.Vehicles.Include(v => v.Features).FindAsync(id);
+            
+            this.mapper.Map<VehicleResource, Vehicle>(vehicleResource, vehicle);
+            vehicle.LastUpdate = DateTime.Now;
+            await this.context.SaveChangesAsync();
+
+            var result = mapper.Map<Vehicle, VehicleResource>(vehicle);
+            return Ok(result);
+        }
     }
 }
