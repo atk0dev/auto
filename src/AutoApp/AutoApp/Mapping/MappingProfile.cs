@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using AutoApp.Controllers.Resources;
 using AutoApp.Models;
@@ -28,28 +29,19 @@ namespace AutoApp.Mapping
                 .ForMember(v => v.ContactPhone, opt => opt.MapFrom(vr => vr.Contact.Phone))
                 .ForMember(v => v.Features, opt => opt.Ignore())
                 .AfterMap((vr, v) => {
-                    //// Remove features
-                    var removedFeatures = new List<VehicleFeature>();
-                    foreach(var f in v.Features)
-                    {
-                        if (!vr.Features.Contains(f.FeatureId))
-                        {
-                            removedFeatures.Add(f);
-                        }
-                    }
-
+                    var removedFeatures = v.Features.Where(f => !vr.Features.Contains(f.FeatureId));
                     foreach(var f in removedFeatures)
                     {
                         v.Features.Remove(f);
                     }
 
                     //// Add features
-                    foreach(var id in vr.Features)
+                    var addedFeatures = vr.Features
+                        .Where(id => !v.Features.Any(f => f.FeatureId == id))
+                        .Select(id => new VehicleFeature { FeatureId = id });
+                    foreach(var f in addedFeatures)
                     {
-                        if (!v.Features.Any(f => f.FeatureId == id))
-                        {
-                            v.Features.Add(new VehicleFeature { FeatureId = id });
-                        }
+                        v.Features.Add(f);
                     }
                 });
         }
