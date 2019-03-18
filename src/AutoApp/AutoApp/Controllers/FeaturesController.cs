@@ -21,10 +21,10 @@ namespace AutoApp.Controllers
         }
 
         [HttpGet("/api/features")]
-        public async Task<IEnumerable<FeatureResource>> GetFeatures()
+        public async Task<IEnumerable<KeyValuePairResource>> GetFeatures()
         {
             var features = await this.context.Features.ToListAsync();
-            return this.mapper.Map<List<Feature>, List<FeatureResource>>(features);
+            return this.mapper.Map<List<Feature>, List<KeyValuePairResource>>(features);
         }
     }
 }

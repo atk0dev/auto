@@ -9,11 +9,11 @@ namespace AutoApp.Controllers.Resources
         
         public string Name { get; set; }
 
-        public ICollection<ModelResource> Models { get; set; }
+        public ICollection<KeyValuePairResource> Models { get; set; }
 
         public MakeResource()
         {
-            this.Models = new Collection<ModelResource>();
+            this.Models = new Collection<KeyValuePairResource>();
         }
 
         
