@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace AutoApp.Persistence
+namespace AutoApp.Core
 {
     public interface IUnitOfWork
     {

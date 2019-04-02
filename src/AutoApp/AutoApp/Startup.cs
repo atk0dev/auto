@@ -1,3 +1,4 @@
+using AutoApp.Core;
 using AutoApp.Persistence;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;

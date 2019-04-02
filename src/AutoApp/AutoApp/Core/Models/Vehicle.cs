@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace AutoApp.Models
+namespace AutoApp.Core.Models
 {
     [Table("Vehicles")]
     public class Vehicle

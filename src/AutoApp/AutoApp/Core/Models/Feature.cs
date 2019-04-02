@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace AutoApp.Models
+namespace AutoApp.Core.Models
 {
     public class Feature
     {

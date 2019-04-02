@@ -1,10 +1,10 @@
 namespace AutoApp.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
-    using AutoApp.Models;
+    using AutoApp.Core.Models;
     using AutoApp.Controllers.Resources;
     using AutoMapper;
-    using AutoApp.Persistence;
+    using AutoApp.Core;
     using System.Threading.Tasks;
     using System;
     using Microsoft.EntityFrameworkCore;
@@ -31,6 +31,7 @@ namespace AutoApp.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateVehicle([FromBody]SaveVehicleResource vehicleResource)
         {
+            throw new Exception("ERROR!");
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

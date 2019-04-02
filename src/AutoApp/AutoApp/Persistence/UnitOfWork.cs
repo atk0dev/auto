@@ -1,6 +1,7 @@
 namespace AutoApp.Persistence
 {
     using System.Threading.Tasks;
+    using AutoApp.Core;
 
     public class UnitOfWork : IUnitOfWork
     {

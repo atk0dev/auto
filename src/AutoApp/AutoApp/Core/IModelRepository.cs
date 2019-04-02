@@ -1,8 +1,8 @@
 using System.Threading.Tasks;
-using AutoApp.Models;
+using AutoApp.Core.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace AutoApp.Persistence
+namespace AutoApp.Core
 {
     public interface IModelRepository
     {

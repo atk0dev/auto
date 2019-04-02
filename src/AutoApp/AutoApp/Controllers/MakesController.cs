@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoApp.Controllers.Resources;
-using AutoApp.Models;
+using AutoApp.Core.Models;
 using AutoApp.Persistence;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;

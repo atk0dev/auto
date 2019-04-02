@@ -1,4 +1,4 @@
-using AutoApp.Models;
+using AutoApp.Core.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace AutoApp.Persistence
