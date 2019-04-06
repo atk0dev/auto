@@ -11,6 +11,7 @@ namespace AutoApp.Mapping
         public MappingProfile()
         {
             //// Domain to Api Resources
+            CreateMap(typeof(QueryResult<>), typeof(QueryResultResource<>));
             CreateMap<Make, MakeResource>();
             CreateMap<Make, KeyValuePairResource>();
             CreateMap<Model, KeyValuePairResource>();
@@ -36,6 +37,7 @@ namespace AutoApp.Mapping
                     })));
                     
             //// Api Resource to Domain
+            CreateMap<VehicleQueryResource, VehicleQuery>();
             CreateMap<SaveVehicleResource, Vehicle>()
                 .ForMember(v => v.Id, opt => opt.Ignore())
                 .ForMember(v => v.ContactName, opt => opt.MapFrom(vr => vr.Contact.Name))

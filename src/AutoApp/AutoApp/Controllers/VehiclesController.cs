@@ -8,6 +8,7 @@ namespace AutoApp.Controllers
     using System.Threading.Tasks;
     using System;
     using Microsoft.EntityFrameworkCore;
+    using System.Collections.Generic;
 
     [Route("/api/vehicles")]
     public class VehiclesController : Controller
@@ -31,7 +32,7 @@ namespace AutoApp.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateVehicle([FromBody]SaveVehicleResource vehicleResource)
         {
-            throw new Exception("ERROR!");
+            //throw new Exception("ERROR!");
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -105,6 +106,15 @@ namespace AutoApp.Controllers
 
             var vehicleResource = mapper.Map<Vehicle, VehicleResource>(vehicle);
             return Ok(vehicleResource);
+        }
+
+        [HttpGet]
+        public async Task<QueryResultResource<VehicleResource>> GetVehicles(VehicleQueryResource filterResource)
+        {
+            var filter = mapper.Map<VehicleQueryResource, VehicleQuery>(filterResource);
+            var queryResult = await vehicleRepository.GetVehicles(filter);
+
+            return mapper.Map<QueryResult<Vehicle>, QueryResultResource<VehicleResource>>(queryResult);
         }
     }
 }

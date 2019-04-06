@@ -1,5 +1,5 @@
-import { SaveVehicle, Vehicle } from './../models/vehicle';
-import { VehicleService } from '../services/vehicle.service';
+import { SaveVehicle, Vehicle } from './../../models/vehicle';
+import { VehicleService } from '../../services/vehicle.service';
 import { Component, OnInit } from '@angular/core';
 import { ToastyService } from 'ng2-toasty';
 import { ActivatedRoute, Router } from '@angular/router';
