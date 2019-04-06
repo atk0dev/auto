@@ -32,7 +32,6 @@ namespace AutoApp.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateVehicle([FromBody]SaveVehicleResource vehicleResource)
         {
-            //throw new Exception("ERROR!");
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -113,7 +112,7 @@ namespace AutoApp.Controllers
         {
             var filter = mapper.Map<VehicleQueryResource, VehicleQuery>(filterResource);
             var queryResult = await vehicleRepository.GetVehicles(filter);
-
+            
             return mapper.Map<QueryResult<Vehicle>, QueryResultResource<VehicleResource>>(queryResult);
         }
     }

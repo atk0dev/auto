@@ -8,7 +8,7 @@ import { VehicleService } from 'src/app/services/vehicle.service';
 })
 export class VehicleListComponent implements OnInit {
 
-  private readonly PAGE_SIZE = 3;
+  private readonly PAGE_SIZE = 5;
 
   queryResult: any = {};
   makes: KeyValuePair[];
@@ -37,7 +37,7 @@ export class VehicleListComponent implements OnInit {
   private populateVehicles() {
     this.vehicleService.getVehicles(this.query)
       .subscribe(result => {
-        this.queryResult = result
+        this.queryResult = result;
       });
   }
 

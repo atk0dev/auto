@@ -7,42 +7,42 @@ import { OnChanges } from '@angular/core';
 
 @Component({
 	selector: 'pagination',
-    template: `
-    <nav *ngIf="totalItems > pageSize">
-        <ul class="pagination">
-            <li [class.disabled]="currentPage == 1">
-                <a (click)="previous()" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>
-            <li [class.active]="currentPage == page" *ngFor="let page of pages" (click)="changePage(page)">
-                <a>{{ page }}</a>
-            </li>
-            <li [class.disabled]="currentPage == pages.length">
-                <a (click)="next()" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
+		template: `
+		<nav *ngIf="totalItems > pageSize">
+				<ul class="pagination">
+						<li [class.disabled]="currentPage == 1">
+								<a (click)="previous()" aria-label="Previous">
+								<span aria-hidden="true">&laquo;</span>
+								</a>
+						</li>
+						<li [class.active]="currentPage == page" *ngFor="let page of pages" (click)="changePage(page)">
+								<a>{{ page }}</a>
+						</li>
+						<li [class.disabled]="currentPage == pages.length">
+								<a (click)="next()" aria-label="Next">
+								<span aria-hidden="true">&raquo;</span>
+								</a>
+						</li>
+				</ul>
+		</nav>
 `
 })
 export class PaginationComponent implements OnChanges {
-  @Input('total-items') totalItems;
+	@Input('total-items') totalItems;
 	@Input('page-size') pageSize = 10;
 	@Output('page-changed') pageChanged = new EventEmitter();
 	pages: any[];
 	currentPage = 1;
 
 	ngOnChanges(){
-    this.currentPage = 1;
+		this.currentPage = 1;
 
 		var pagesCount = Math.ceil(this.totalItems / this.pageSize);
 		this.pages = [];
-		for (var i = 1; i <= pagesCount; i++)
+		for (var i = 1; i <= pagesCount; i++) {
 			this.pages.push(i);
+		}
 
-    console.log(this);
 	}
 
 	changePage(page){
@@ -63,7 +63,6 @@ export class PaginationComponent implements OnChanges {
 			return;
 
 		this.currentPage++;
-    console.log("next", this);
 		this.pageChanged.emit(this.currentPage);
 	}
 }

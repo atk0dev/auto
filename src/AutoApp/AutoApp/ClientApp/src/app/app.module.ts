@@ -18,6 +18,8 @@ import { VehicleFormComponent } from './components/vehicle-form/vehicle-form.com
 import { VehicleListComponent } from './components/vehicle-list/vehicle-list.component';
 import { VehicleService } from './services/vehicle.service';
 import { PaginationComponent } from './components/shared/pagination.component';
+import Viewvehicle = require("./components/view-vehicle/view-vehicle");
+import ViewVehicleComponent = Viewvehicle.ViewVehicleComponent;
 
 //Raven.config('url-here').install();
 
@@ -43,7 +45,8 @@ import { PaginationComponent } from './components/shared/pagination.component';
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'vehicles', component: VehicleListComponent },
       { path: 'vehicles/new', component: VehicleFormComponent },
-      { path: 'vehicles/:id', component: VehicleFormComponent },
+      { path: 'vehicles/edit/:id', component: VehicleFormComponent },
+      { path: 'vehicles/:id', component: ViewVehicleComponent },
       { path: '**', redirectTo: 'vehicles' }
     ])
   ],

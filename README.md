@@ -12,8 +12,7 @@ GET https://localhost:5001/api/vehicles
 GET https://localhost:5001/api/vehicles?page=2
 
 bugs:
-1. Edit vahicle and set new features. api request failed.
-2. errors from server do not poup up in angular app
+
 
 todo
 1. rename public static class IQueryableExtensions to QueryableExtensions
