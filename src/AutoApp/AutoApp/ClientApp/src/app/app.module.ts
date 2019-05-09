@@ -18,8 +18,8 @@ import { VehicleFormComponent } from './components/vehicle-form/vehicle-form.com
 import { VehicleListComponent } from './components/vehicle-list/vehicle-list.component';
 import { VehicleService } from './services/vehicle.service';
 import { PaginationComponent } from './components/shared/pagination.component';
-import Viewvehicle = require("./components/view-vehicle/view-vehicle");
-import ViewVehicleComponent = Viewvehicle.ViewVehicleComponent;
+import { ViewVehicleComponent } from './components/view-vehicle/view-vehicle';
+import { PhotoService } from './services/photo.service';
 
 //Raven.config('url-here').install();
 
@@ -33,6 +33,7 @@ import ViewVehicleComponent = Viewvehicle.ViewVehicleComponent;
     VehicleFormComponent,
     VehicleListComponent,
     PaginationComponent,
+    ViewVehicleComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -52,7 +53,8 @@ import ViewVehicleComponent = Viewvehicle.ViewVehicleComponent;
   ],
   providers: [
     { provide: ErrorHandler, useClass: AppErrorHandler },
-    VehicleService
+    VehicleService,
+    PhotoService,
   ],
   bootstrap: [AppComponent]
 })

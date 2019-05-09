@@ -1,19 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AutoApp.Core.Models
+namespace AutoApp.Controllers.Resources
 {
-    public class Photo
+    public class PhotoResource
     {
         public int Id { get; set; }
-
-        [Required]
-        [StringLength(255)]
         public string FileName { get; set; }
-
-        public int VehicleId { get; set; }
     }
 }

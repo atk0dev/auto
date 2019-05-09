@@ -1,16 +1,8 @@
 <h1>Vehicle</h1>
 <div>
 
-  <!-- Nav tabs -->
-  <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#basic" aria-controls="basic" role="tab" data-toggle="tab">Vehicle</a></li>
-    <li role="presentation"><a href="#photos" aria-controls="photos" role="tab" data-toggle="tab">Photos</a></li>
-  </ul>
-
-  <!-- Tab panes -->
-  <div class="tab-content" *ngIf="vehicle">
-    <!-- Vehicle tab -->
-    <div role="tabpanel" class="tab-pane active" id="basic">
+  <div *ngIf="vehicle">
+    <div>
       <h2>Basics</h2>
       <ul>
         <li>Make: {{ vehicle.make.name }}</li>
@@ -29,15 +21,18 @@
       </ul>
       <br/>
       <p>
-        <a *ngIf="auth.authenticated()" class="btn btn-primary" [routerLink]="['/vehicles/edit/', vehicle.id]">Edit</a>
-        <button *ngIf="auth.authenticated()" class="btn btn-danger" (click)="delete()">Delete</button>
+        <!--        *ngIf="auth.authenticated()"-->
+        <a class="btn btn-primary" [routerLink]="['/vehicles/edit/', vehicle.id]">Edit</a>
+        <!--*ngIf="auth.authenticated()"-->
+        <button class="btn btn-danger" (click)="delete()">Delete</button>
         <a class="btn btn-default" [routerLink]="['/vehicles']">View All Vehicles</a>
       </p>
     </div>
-    <!-- Photos tab -->
-    <div role="tabpanel" class="tab-pane" id="photos">
+
+    <div>
       <h2>Photos</h2>
-      <input *ngIf="auth.authenticated()" type="file" (change)="uploadPhoto()" #fileInput> 
+      <!--*ngIf="auth.authenticated()"-->
+      <input type="file" (change)="uploadPhoto()" #fileInput>
       <div class="progress" *ngIf="progress && progress.percentage < 100">
         <div class="progress-bar" [style.width]="progress.percentage + '%'">
           <span class="sr-only">{{ progress.percentage }}% Complete</span>

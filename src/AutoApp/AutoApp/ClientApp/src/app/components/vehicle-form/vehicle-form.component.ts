@@ -34,10 +34,11 @@ export class VehicleFormComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private vehicleService: VehicleService,
+
     private toastyService: ToastyService) {
-    route.params.subscribe(p => {
-      this.vehicle.id = +p['id'] || 0;
-    });
+      route.params.subscribe(p => {
+        this.vehicle.id = +p['id'] || 0;
+      });
     }
 
   ngOnInit() {
@@ -94,7 +95,7 @@ export class VehicleFormComponent implements OnInit {
 
   submit() {
     var result$ = (this.vehicle.id) ? this.vehicleService.update(this.vehicle) : this.vehicleService.create(this.vehicle);
-    result$.subscribe(vehicle => {
+    result$.subscribe((vehicle: Vehicle) => {
       this.toastyService.success({
         title: 'Success',
         msg: 'Data was sucessfully saved.',
@@ -102,6 +103,7 @@ export class VehicleFormComponent implements OnInit {
         showClose: true,
         timeout: 5000
       });
+      
       this.router.navigate(['/vehicles/', vehicle.id]);
     });
   }

@@ -1,4 +1,5 @@
 using AutoApp.Core;
+using AutoApp.Core.Models;
 using AutoApp.Persistence;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
@@ -24,8 +25,11 @@ namespace AutoApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<PhotoSettings>(this.Configuration.GetSection("PhotoSettings"));
+
             services.AddScoped<IVehicleRepository, VehicleRepository>();
             services.AddScoped<IModelRepository, ModelRepository>();
+            services.AddScoped<IPhotoRepository, PhotoRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddAutoMapper();

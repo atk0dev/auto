@@ -1,7 +1,7 @@
 //import { Auth } from './../../services/auth.service';
 import { BrowserXhr } from '@angular/http';
 //import { ProgressService, BrowserXhrWithProgress } from './../../services/progress.service';
-//import { PhotoService } from './../../services/photo.service';
+import { PhotoService } from './../../services/photo.service';
 import { ToastyService } from 'ng2-toasty';
 import { VehicleService } from './../../services/vehicle.service';
 import { Component, OnInit, ElementRef, ViewChild, NgZone } from '@angular/core';
@@ -28,7 +28,7 @@ export class ViewVehicleComponent implements OnInit {
     private router: Router,
     private toasty: ToastyService,
     //private progressService: ProgressService,
-    //private photoService: PhotoService,
+    private photoService: PhotoService,
     private vehicleService: VehicleService) { 
 
     route.params.subscribe(p => {
@@ -40,14 +40,16 @@ export class ViewVehicleComponent implements OnInit {
     });
   }
 
-  ngOnInit() { 
-    //this.photoService.getPhotos(this.vehicleId) 
-    //  .subscribe(photos => this.photos = photos);
+  ngOnInit() {
+    this.photoService.getPhotos(this.vehicleId) 
+      .subscribe(photos => {
+        this.photos = photos;
+      });
 
     this.vehicleService.getVehicle(this.vehicleId)
       .subscribe(
         v => this.vehicle = v,
-        err => {
+      err => {
           if (err.status == 404) {
             this.router.navigate(['/vehicles']);
             return; 
@@ -74,21 +76,22 @@ export class ViewVehicleComponent implements OnInit {
     //  null,
     //  () => { this.progress = null; });
 
-    //var nativeElement: HTMLInputElement = this.fileInput.nativeElement;
-    //var file = nativeElement.files[0];
-    //nativeElement.value = ''; 
-    //this.photoService.upload(this.vehicleId, file)
-    //  .subscribe(photo => {
-    //    this.photos.push(photo);
-    //  },
-    //  err => {
-    //    this.toasty.error({
-    //      title: 'Error',
-    //      msg: err.text(),
-    //      theme: 'bootstrap',
-    //      showClose: true,
-    //      timeout: 5000
-    //    });
-    //  });
+    var nativeElement: HTMLInputElement = this.fileInput.nativeElement;
+    var file = nativeElement.files[0];
+    nativeElement.value = ''; 
+    this.photoService.upload(this.vehicleId, file)
+      .subscribe(photo => {
+        this.photos.push(photo);
+      },
+      err => {
+        debugger;
+        this.toasty.error({
+          title: 'Error',
+          msg: err.error,
+          theme: 'bootstrap',
+          showClose: true,
+          timeout: 5000
+        });
+      });
   }
 }
