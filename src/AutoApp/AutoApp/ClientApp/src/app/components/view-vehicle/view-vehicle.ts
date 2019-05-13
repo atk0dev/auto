@@ -84,7 +84,6 @@ export class ViewVehicleComponent implements OnInit {
         this.photos.push(photo);
       },
       err => {
-        debugger;
         this.toasty.error({
           title: 'Error',
           msg: err.error,

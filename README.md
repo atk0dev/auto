@@ -18,3 +18,5 @@ todo
 1. rename public static class IQueryableExtensions to QueryableExtensions
 2. add styles to pagination control
 3. Add Stylecop to project
+4. Replace confirm("Are you sure?") with Angular confirm dialog
+5. Delete Counter and FetchData
