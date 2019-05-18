@@ -7,12 +7,10 @@ import { BrowserXhr } from "@angular/http";
   providedIn: 'root'
 })
 export class ProgressService {
-
   uploadProgress: Subject<any> = new Subject();
   downloadProgress: Subject<any> = new Subject();
-  
+
   constructor(private http: HttpClient) { }
-  
 }
 
 
